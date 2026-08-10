@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark
+  namespace: cmapss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark
+  template:
+    metadata:
+      labels:
+        app: spark
+    spec:
+      containers:
+        - name: spark
+          image: cmapss-spark:1.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: KAFKA_BOOTSTRAP
+              value: "cmapss-kafka-kafka-bootstrap:9092"
+            - name: TOPIC
+              value: "sensor-readings"
+            - name: SCHEMA_FILE
+              value: "/app/schemas/reading.avsc"
+            - name: MODEL_DIR
+              value: "/app/model"
+            - name: MONGO_URI
+              value: "mongodb://mongodb:27017"
+            - name: MONGO_DB
+              value: "monitoring"
+            - name: MONGO_COLLECTION
+              value: "scored_readings"
+            - name: CHECKPOINT
+              value: "/app/checkpoints/scoring"
+          volumeMounts:
+            - name: checkpoints
+              mountPath: /app/checkpoints
+      volumes:
+        - name: checkpoints
+          persistentVolumeClaim:
+            claimName: spark-checkpoints
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: spark-checkpoints
+  namespace: cmapss
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 2Gi

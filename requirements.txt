@@ -1,0 +1,10 @@
+pandas
+numpy
+scikit-learn
+xgboost
+mlflow
+confluent-kafka[avro]
+fastavro
+prometheus-client
+joblib
+pyarrow

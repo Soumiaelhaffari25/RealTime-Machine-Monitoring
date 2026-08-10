@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer
+  namespace: cmapss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer
+  template:
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+        - name: producer
+          image: cmapss-producer:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: KAFKA_BOOTSTRAP
+              value: "cmapss-kafka-kafka-bootstrap:9092"
+            - name: SCHEMA_REGISTRY_URL
+              value: "http://schema-registry:8081/apis/ccompat/v7"
+            - name: TOPIC
+              value: "sensor-readings"
+            - name: DATA_FILE
+              value: "data/train_FD001.txt"
+            - name: SCHEMA_FILE
+              value: "schemas/reading.avsc"
+            - name: FLEET_SIZE
+              value: "30"
+            - name: MAX_AGE_CYCLES
+              value: "130"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: producer
+  namespace: cmapss
+spec:
+  selector:
+    app: producer
+  ports:
+    - port: 8000
+      targetPort: 8000

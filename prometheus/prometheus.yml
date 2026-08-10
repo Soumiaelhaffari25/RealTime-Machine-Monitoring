@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 5s          # frequence de collecte
+  evaluation_interval: 5s
+
+scrape_configs:
+  #API metier (flotte, RUL, anomalies)
+  - job_name: "cmapss-api"
+    static_configs:
+      - targets: ["host.docker.internal:8010"]
+    metrics_path: /metrics
+
+  #Producteur (messages envoyes, moteurs actifs)
+  - job_name: "cmapss-producer"
+    static_configs:
+      - targets: ["host.docker.internal:8000"]
+    metrics_path: /metrics

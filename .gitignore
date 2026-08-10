@@ -1,0 +1,39 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+#Modeles ML
+ml/model/
+ml/models/
+# copie des modeles utilisee pour le build de l'image Spark
+spark_job/model/
+
+#Donnees : dataset C-MAPSS 
+producer/data/
+ml/data/
+
+#Checkpoints Spark (generes au runtime)
+spark_job/checkpoints/
+
+#MLflow (base et runs locaux)
+mlflow.db
+mlruns/
+
+#Logs et temporaires
+*.log
+
+#Secrets / config locale
+.env
+.env.*
+*.key
+*.pem
+
+#Kubernetes (kubeconfig local eventuel)
+kubeconfig
+
+#OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,38 @@
+{
+  "type": "record",
+  "name": "EngineReading",
+  "namespace": "com.monitoring.cmapss",
+  "doc": "Un cycle de mesures d'un moteur d'avion (dataset NASA C-MAPSS FD001).",
+  "fields": [
+    { "name": "unit_id",    "type": "int",    "doc": "Identifiant du moteur (1-100)" },
+    { "name": "cycle",      "type": "int",    "doc": "Numero du cycle de vie du moteur" },
+    { "name": "event_time", "type": "long", "logicalType": "timestamp-millis",
+      "doc": "Horodatage de publication du message (epoch millis)" },
+
+    { "name": "setting_1",  "type": "float",  "doc": "Reglage operationnel 1" },
+    { "name": "setting_2",  "type": "float",  "doc": "Reglage operationnel 2" },
+    { "name": "setting_3",  "type": "float",  "doc": "Reglage operationnel 3" },
+
+    { "name": "sensor_1",  "type": "float" },
+    { "name": "sensor_2",  "type": "float" },
+    { "name": "sensor_3",  "type": "float" },
+    { "name": "sensor_4",  "type": "float" },
+    { "name": "sensor_5",  "type": "float" },
+    { "name": "sensor_6",  "type": "float" },
+    { "name": "sensor_7",  "type": "float" },
+    { "name": "sensor_8",  "type": "float" },
+    { "name": "sensor_9",  "type": "float" },
+    { "name": "sensor_10", "type": "float" },
+    { "name": "sensor_11", "type": "float" },
+    { "name": "sensor_12", "type": "float" },
+    { "name": "sensor_13", "type": "float" },
+    { "name": "sensor_14", "type": "float" },
+    { "name": "sensor_15", "type": "float" },
+    { "name": "sensor_16", "type": "float" },
+    { "name": "sensor_17", "type": "float" },
+    { "name": "sensor_18", "type": "float" },
+    { "name": "sensor_19", "type": "float" },
+    { "name": "sensor_20", "type": "float" },
+    { "name": "sensor_21", "type": "float" }
+  ]
+}
