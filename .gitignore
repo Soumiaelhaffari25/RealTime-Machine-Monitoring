@@ -10,7 +10,8 @@ ml/models/
 spark_job/model/
 
 #Donnees : dataset C-MAPSS 
-producer/data/
+producer/data/*
+!producer/data/.gitkeep
 ml/data/
 
 #Checkpoints Spark (generes au runtime)
