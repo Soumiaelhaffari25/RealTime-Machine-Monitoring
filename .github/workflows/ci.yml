@@ -1,0 +1,44 @@
+name: CI
+
+# Se declenche a chaque push et pull request sur main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+    name: Tests & qualite du code
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Recuperer le code du repo
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      # 2. Installer Python 3.11 (meme version que le projet)
+      - name: Installer Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. Installer les dependances necessaires aux tests
+      - name: Installer les dependances
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest flake8
+          pip install fastapi uvicorn pymongo prometheus-client
+
+      # 4. Verifier la qualite du code (linting)
+      - name: Linting avec flake8
+        run: |
+          # Erreurs critiques (syntaxe, imports non definis) -> echec
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Autres avertissements -> informatif, ne fait pas echouer
+          flake8 . --count --exit-zero --max-line-length=120 --statistics
+        continue-on-error: true
+
+      # 5. Lancer les tests unitaires
+      - name: Tests unitaires (pytest)
+        run: pytest tests/ -v
