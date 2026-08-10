@@ -1,0 +1,42 @@
+name: CD
+
+# Se declenche apres un push sur main (build des images Docker)
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-images:
+    name: Build des images Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Recuperer le code
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      # 2. Configurer Docker Buildx (moteur de build moderne)
+      - name: Configurer Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 3. Builder l'image du producteur
+      - name: Build image producer
+        uses: docker/build-push-action@v6
+        with:
+          context: ./producer
+          file: ./producer/Dockerfile
+          push: false
+          tags: cmapss-producer:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # 4. Builder l'image de l'API
+      - name: Build image api
+        uses: docker/build-push-action@v6
+        with:
+          context: ./api
+          file: ./api/Dockerfile
+          push: false
+          tags: cmapss-api:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
