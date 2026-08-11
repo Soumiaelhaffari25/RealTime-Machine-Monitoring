@@ -148,7 +148,7 @@ Two models were compared fairly (RandomizedSearchCV, cross-validation):
 | Model | R² | MAE | RMSE |
 |---|---|---|---|
 | **RandomForest** ✅ | 0.826 | 11.87 | 16.74 |
-| XGBoost | 0.825 | — | 16.75 |
+| XGBoost | 0.825 | 11.87 | 16.75 |
 
 **RandomForest** was selected (near-identical, slightly better performance).
 
