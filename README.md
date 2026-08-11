@@ -139,7 +139,7 @@ The pipeline follows a **decoupled, streaming-oriented architecture**: each comp
 
 ## 🤖 Machine Learning Models
 
-Models are trained **offline** on the C-MAPSS FD001 dataset, with experiment tracking via **MLflow**. RUL is capped at 125 cycles (standard C-MAPSS convention), and the scaler is fit on the training data only to prevent data leakage.
+Models are trained on the C-MAPSS FD001 dataset, with experiment tracking via **MLflow**. RUL is capped at 125 cycles (standard C-MAPSS convention), and the scaler is fit on the training data only to prevent data leakage.
 
 ### RUL Prediction (regression)
 
