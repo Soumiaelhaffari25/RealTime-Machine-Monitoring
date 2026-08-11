@@ -147,7 +147,7 @@ Two models were compared fairly (RandomizedSearchCV, cross-validation):
 
 | Model | R² | MAE | RMSE |
 |---|---|---|---|
-| **RandomForest** ✅ | 0.826 | 11.87 | 16.74 |
+| **RandomForest**  | 0.826 | 11.87 | 16.74 |
 | XGBoost | 0.825 | 11.87 | 16.75 |
 
 **RandomForest** was selected (near-identical, slightly better performance).
@@ -158,14 +158,14 @@ Two approaches compared via a separation score (% anomalies at end of life − %
 
 | Model | Separation score |
 |---|---|
-| **Isolation Forest** ✅ | 89.7 |
+| **Isolation Forest**  | 89.7 |
 | Local Outlier Factor | 89.4 |
 
 **Isolation Forest** was selected. The two models cross-validate each other in production: engines with the lowest RUL are also the ones flagged as anomalous.
 
 ### Regenerating the models
 
-> ℹ️ Trained models (`.pkl`) are not versioned (large files). To regenerate them:
+>  Trained models (`.pkl`) are not versioned (large files). To regenerate them:
 
 ```bash
 pip install -r ml/requirements-ml.txt
