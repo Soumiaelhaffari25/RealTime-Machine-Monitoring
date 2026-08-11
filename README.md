@@ -110,7 +110,7 @@ The pipeline follows a **decoupled, streaming-oriented architecture**: each comp
 │   ├── api.yaml
 │   ├── prometheus.yaml
 │   └── grafana.yaml
-├── ml/                     # Model training (offline)
+├── ml/                     # Model training 
 │   ├── build_rul_cmapss.py       # Data preparation + feature engineering
 │   ├── train_rul_cmapss.py       # RUL model training
 │   ├── train_detection_cmapss.py # Anomaly detection training
