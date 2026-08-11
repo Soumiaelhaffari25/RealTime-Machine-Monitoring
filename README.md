@@ -115,7 +115,6 @@ The pipeline follows a **decoupled, streaming-oriented architecture**: each comp
 │   ├── train_rul_cmapss.py       # RUL model training
 │   ├── train_detection_cmapss.py # Anomaly detection training
 │   ├── explore.py                # Dataset exploration
-│   ├── demo_pred.py              # Prediction demo
 │   └── requirements-ml.txt
 ├── producer/               # Real-time producer
 │   ├── Dockerfile
@@ -126,12 +125,9 @@ The pipeline follows a **decoupled, streaming-oriented architecture**: each comp
 │   ├── streaming_job.py    # Kafka consumption + scoring + Mongo write
 │   ├── scoring.py          # Model loading + prediction
 │   ├── mongo_sink.py       # MongoDB writer
-│   ├── setup_indexes.py
 │   └── schemas/reading.avsc
 ├── prometheus/             # Prometheus configuration + alerts
-│   ├── prometheus.yml
-│   ├── alert_rules.yml
-│   └── alertmanager.yml
+│   └── prometheus.yml
 ├── tests/                  # Unit tests (pytest)
 │   └── test_state_from_rul.py
 ├── docker-compose.yml      # Full local deployment
@@ -216,7 +212,7 @@ uvicorn api.grafana_bridge:app --host 0.0.0.0 --port 8010
 
 ## ☸️ Kubernetes Deployment
 
-The full pipeline can be deployed on a Kubernetes cluster. Kafka is managed by the **Strimzi operator**, MongoDB by a **StatefulSet** with a persistent volume, and the applications (producer, API, Spark) are containerized.
+The full pipeline was deployed on a Kubernetes cluster. Kafka is managed by the **Strimzi operator**, MongoDB by a **StatefulSet** with a persistent volume, and the applications (producer, API, Spark) are containerized.
 
 ### Prerequisites
 - Docker, [Kind](https://kind.sigs.k8s.io/), kubectl, Helm
