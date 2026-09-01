@@ -1,4 +1,4 @@
-# 🛠️ Real-Time Machine Monitoring — NASA C-MAPSS
+# 🛠️ Real-Time Machine Monitoring
 
 End-to-end **machine monitoring** pipeline for a fleet of aircraft engines, based on the **NASA C-MAPSS** dataset (Turbofan Engine Degradation Simulation). The system ingests sensor data in real time, predicts each engine's **Remaining Useful Life (RUL)**, detects anomalous behavior, and surfaces everything through dashboards and alerts.
 
